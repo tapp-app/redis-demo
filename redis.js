@@ -1,9 +1,18 @@
 var redis = require('redis');
 
-var client = redis.createClient();
+// var client = redis.createClient(6379, '127.0.0.1');
+var client = redis.createClient(6379,'test-001.wcy6sh.0001.usw2.cache.amazonaws.com', {});
 
 client.on("error", function (err) {
 	console.log("Error " + err);
+});
+
+client.on('ready', function() {
+	console.log('redis READY.');
+});
+
+client.on('connect', function() {
+	console.log('redis CONNECTED.');
 });
 
 // client.mset([
